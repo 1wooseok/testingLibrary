@@ -1,23 +1,37 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [count, setCount] = useState(0);
+  const [toggle, setToggle] = useState(true);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button
+        data-testid="minus-button"
+        onClick={() => setCount(prev => prev - 1)}
+        disabled={!toggle}
+      >
+        -
+      </button>
+      <div
+        data-testid="counter"
+      >
+        {count}
+      </div>
+      <button
+        data-testid="plus-button"
+        onClick={() => toggle && setCount(prev => prev - 1)}
+        disabled={!toggle}
+      >
+        +
+      </button>
+      <button
+        data-testid="toggle-button"
+        onClick={() => setToggle(toggle => !toggle)}
+        style={{ backgroundColor: "blue" }}
+      >
+        {toggle ? "on" : "off"}
+      </button>
     </div>
   );
 }
